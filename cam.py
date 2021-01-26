@@ -93,9 +93,12 @@ class VideoStream(object):
                     for hand_landmarks in results.multi_hand_landmarks:
 
                         ok_pose = self.ok_pose(hand_landmarks)
-                        
+                        stop_pose = self.stopPoseDetection(hand_landmarks.landmark)
+
                         if ok_pose:
                             print('Play video')
+                        if stop_pose:
+                            print('Stop video')
                             
                     # Draw index finger tip coordinates
                     self.mp_drawing.draw_landmarks(
@@ -116,6 +119,18 @@ class VideoStream(object):
             ret, jpeg = cv2.imencode('.jpg', image)
 
             return jpeg.tobytes()
+    
+    
+    def stopPoseDetection(self, landmark):
+        index = landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].y
+        middle = landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
+        ring = landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].y
+        pinky = landmark[self.mp_hands.HandLandmark.PINKY_MCP].y
+        if(abs(index - middle) > 0.02 or abs(index - ring) > 0.02 or abs(index - pinky) > 0.02):
+            return False
+        else:
+            return True
+
 #
 #@Name
 #   ok_pose()
