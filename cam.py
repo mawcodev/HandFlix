@@ -38,6 +38,10 @@ class VideoStream(object):
     
     #Initialize important variables
     def __init__(self):
+        self.play_counter = 0
+        self.pause_counter = 0
+        self.stop_counter = 0
+        self.debug_counter = 0
         #Video capture 
         self.video = cv2.VideoCapture(0)
         #Drawing utils for hands
@@ -92,6 +96,12 @@ class VideoStream(object):
 
                         self.stop_pose_detection(hand_landmarks.landmark)
                         self.debug_pose_detection(hand_landmarks.landmark)
+                        if(self.stop_counter > 10):
+                            print("STOP")
+                            self.stop_counter = 0
+                        if(self.debug_counter > 20):
+                            print("DEBUG")
+                            self.debug_counter = 0
                         x = [landmark.x for landmark in hand_landmarks.landmark]
                         y = [landmark.y for landmark in hand_landmarks.landmark]      
                         self.hand_coordinates = np.transpose(np.stack((y, x))) * image.shape[0:2]
@@ -138,10 +148,9 @@ class VideoStream(object):
         ring = landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].y
         pinky = landmark[self.mp_hands.HandLandmark.PINKY_MCP].y
         if(abs(index - middle) < 0.02 and abs(index - ring) < 0.02 and abs(index - pinky) < 0.02):
-            return True
+            self.stop_counter += 1
         else:
-            return False
-    
+            return
     #
     #@Name
     # debug_pose_detection()
@@ -161,7 +170,6 @@ class VideoStream(object):
         thumb = landmark[self.mp_hands.HandLandmark.THUMB_TIP].y
         index = landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].y
         if(abs(thumb - index) < 0.05):
-            return True
+            self.debug_counter += 1
         else:
-            return False
-
+            return
