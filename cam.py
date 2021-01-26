@@ -94,7 +94,7 @@ class VideoStream(object):
 
                         ok_pose = self.ok_pose(hand_landmarks)
                         pause_pose = self.pause_pose(hand_landmarks)
-                        stop_pose = self.stopPoseDetection(hand_landmarks.landmark)
+                        stop_pose = self.stop_pose_detection(hand_landmarks.landmark)
                         debug_pose = self.debug_pose_detection(hand_landmarks.landmark)
                         #
                         if ok_pose:
