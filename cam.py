@@ -95,7 +95,7 @@ class VideoStream(object):
                         ok_pose = self.ok_pose(hand_landmarks)
                         pause_pose = self.pause_pose(hand_landmarks)
                         stop_pose = self.stopPoseDetection(hand_landmarks.landmark)
-
+                        debug_pose = self.debug_pose_detection(hand_landmarks.landmark)
                         #
                         if ok_pose:
                             print('Play video')
@@ -103,6 +103,8 @@ class VideoStream(object):
                             print('Video pause')
                         elif stop_pose:
                             print('Stop video')
+                        elif debug_pose:
+                            print('Debug pose')
                             
                     # Draw index finger tip coordinates
                     self.mp_drawing.draw_landmarks(
@@ -123,17 +125,53 @@ class VideoStream(object):
             ret, jpeg = cv2.imencode('.jpg', image)
 
             return jpeg.tobytes()
-    
-    
-    def stopPoseDetection(self, landmark):
+    #
+    #@Name
+    # stop_pose_detection()
+    #@Description
+    # If a hand pose is in STOP pose
+    #
+    # landmarks: np.array
+    #                 -->
+    #                       stop_pose_detection()
+    #                                       -->
+    #                                           boolean
+    # @Author
+    # Oscar Blanquez
+    # @Date
+    # 26/01/2021
+    def stop_pose_detection(self, landmark):
         index = landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].y
         middle = landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
         ring = landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].y
         pinky = landmark[self.mp_hands.HandLandmark.PINKY_MCP].y
-        if(abs(index - middle) > 0.02 and abs(index - ring) > 0.02 and abs(index - pinky) > 0.02):
-            return False
-        else:
+        if(abs(index - middle) < 0.02 and abs(index - ring) < 0.02 and abs(index - pinky) < 0.02):
             return True
+        else:
+            return False
+    
+    #
+    #@Name
+    # debug_pose_detection()
+    #@Description
+    # If a hand pose is in troll pose
+    #
+    # landmarks: np.array
+    #                 -->
+    #                       debug_pose_detection()
+    #                                       -->
+    #                                           boolean
+    # @Author
+    # Oscar Blanquez
+    # @Date
+    # 26/01/2021
+    def debug_pose_detection(self, landmark):
+        thumb = landmark[self.mp_hands.HandLandmark.THUMB_TIP].y
+        index = landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].y
+        if(abs(thumb - index) < 0.05):
+            return True
+        else:
+            return False
 
 #
 #@Name
