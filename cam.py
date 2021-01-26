@@ -10,28 +10,6 @@ import cv2
 import mediapipe as mp
 import numpy as np
 
-STOP_POSE = np.array([[458.9168644, 146.58317566],
-                    [442.23644257, 200.36252975],
-                    [418.75642776, 243.5219574 ],
-                    [391.6795063,  278.67773056],
-                    [371.20339394, 304.28642273],
-                    [354.96382713, 204.44623947],
-                    [301.20789528, 231.46738052],
-                    [265.01764297, 246.67585373],
-                    [234.32318687, 257.59262085],
-                    [345.41095734, 173.3524704 ],
-                    [287.27119446, 193.45767975],
-                    [246.80110931, 206.39400482],
-                    [214.25803185, 215.50016403],
-                    [347.53460884, 142.29740143],
-                    [294.08763885, 145.60795784],
-                    [256.52137756, 148.37759972],
-                    [225.27832031, 151.39935493],
-                    [360.45687675, 112.87567139],
-                    [321.61253929,  95.44146538],
-                    [295.55768967,  84.65111732],
-                    [271.31263733,  76.93968773]])
-
 
 
 class VideoStream(object):
@@ -57,9 +35,6 @@ class VideoStream(object):
         self.video.release()        
 
     def hand_pose(self):
-
-        #print("Array stop pose: ",STOP_POSE)
-        #print(len(STOP_POSE))
         # Read each frame 
         ret, frame = self.video.read()
         
@@ -76,18 +51,18 @@ class VideoStream(object):
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         image_height, image_width, _ = image.shape
 
-        #Sí no encuentra manos no hará nada, pero devolverá image
+        #If don't found a hand, return image only
         if results.multi_handedness == None:
             #solo devuelve la imagen de streaming
             #print('Type value is None')
             # Convert to jpeg
             ret, jpeg = cv2.imencode('.jpg', image)
             return jpeg.tobytes()
-        #Sí encuentra manos identificara cual es
+        #If found a hand identify pose
         else:
             #print('Handedness: ', results.multi_handedness[0].classification[0].label)
             what_hand = results.multi_handedness[0].classification[0].label
-            #Si la mano es la izquierda dibujara las landmarks
+            #If hand is left draw
             if what_hand == 'Left':
                 #print('Left hand')
 
@@ -95,11 +70,14 @@ class VideoStream(object):
                 if results.multi_hand_landmarks:
                     multi_hand_coordinates = []
                     for hand_landmarks in results.multi_hand_landmarks:
-
+                        
+                        #Call funtions to detect pose
                         self.stop_pose_detection(hand_landmarks.landmark)
                         self.debug_pose_detection(hand_landmarks.landmark)
                         self.ok_pose(hand_landmarks)
                         self.pause_pose(hand_landmarks)
+
+
                         if(self.stop_counter > 10):
                             print("STOP")
                             self.stop_counter = 0
@@ -112,13 +90,6 @@ class VideoStream(object):
                         if(self.pause_counter > 20):
                             print("PAUSE")
                             self.pause_counter = 0
-                        x = [landmark.x for landmark in hand_landmarks.landmark]
-                        y = [landmark.y for landmark in hand_landmarks.landmark]      
-                        self.hand_coordinates = np.transpose(np.stack((y, x))) * image.shape[0:2]
-                        #print(self.hand_coordinates)
-                        #print(STOP_POSE[0][0])
-                        if round(STOP_POSE[0][0]) == round(self.hand_coordinates[0][0]):
-                            print("Son iguales: ", self.hand_coordinates[0][0])
 
                     # Draw index finger tip coordinates
                     self.mp_drawing.draw_landmarks(
@@ -128,9 +99,9 @@ class VideoStream(object):
                 ret, jpeg = cv2.imencode('.jpg', image)
                 return jpeg.tobytes()
                 
-            #sí la mano es la derecha no dibujara landmarks pero si devolvera image
+            #If hand is rigth don't draw
             else:
-                #print('Debes utilizar la mano derecha')
+                #print('You must use rigth hand')
                 # Convert to jpeg
                 ret, jpeg = cv2.imencode('.jpg', image)
 
