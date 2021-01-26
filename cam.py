@@ -90,12 +90,7 @@ class VideoStream(object):
                     multi_hand_coordinates = []
                     for hand_landmarks in results.multi_hand_landmarks:
 
-                        index = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].y
-                        middle = hand_landmarks.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
-                        ring = hand_landmarks.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].y
-                        pinky = hand_landmarks.landmark[self.mp_hands.HandLandmark.PINKY_MCP].y
-
-                        self.stopPoseDetection(index, middle, ring, pinky)
+                        self.stopPoseDetection(hand_landmarks.landmark)
 
                         x = [landmark.x for landmark in hand_landmarks.landmark]
                         y = [landmark.y for landmark in hand_landmarks.landmark]
@@ -123,7 +118,11 @@ class VideoStream(object):
             ret, jpeg = cv2.imencode('.jpg', image)
 
             return jpeg.tobytes()
-    def stopPoseDetection(self, index, middle, ring, pinky):
+    def stopPoseDetection(self, landmark):
+        index = landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].y
+        middle = landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
+        ring = landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].y
+        pinky = landmark[self.mp_hands.HandLandmark.PINKY_MCP].y
         if(abs(index - middle) > 0.02 or abs(index - ring) > 0.02 or abs(index - pinky) > 0.02):
             return False
         else:
