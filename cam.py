@@ -47,6 +47,7 @@ class VideoStream(object):
         self.hands = self.mp_hands.Hands(max_num_hands=1, min_detection_confidence=0.5, min_tracking_confidence=0.5)
         #Coordinates
         self.hand_coordinates = []
+        
     def __del__(self):
 
         self.video.release()        
@@ -86,25 +87,24 @@ class VideoStream(object):
             if what_hand == 'Left':
                 print('Left hand')
 
+                 #See hand coordinates and get thumb finger coordinates and wrist coordinates
                 if results.multi_hand_landmarks:
                     multi_hand_coordinates = []
                     for hand_landmarks in results.multi_hand_landmarks:
 
-                        x = [landmark.x for landmark in hand_landmarks.landmark]
-                        y = [landmark.y for landmark in hand_landmarks.landmark]
+                        ok_pose = self.ok_pose(hand_landmarks)
                         
-                        self.hand_coordinates = np.transpose(np.stack((y, x))) * image.shape[0:2]
-                        #print(self.hand_coordinates)
-                        #print(STOP_POSE[0][0])
-                        if round(STOP_POSE[0][0]) == round(self.hand_coordinates[0][0]):
-                            print("Son iguales: ", self.hand_coordinates[0][0])
-
+                        if ok_pose:
+                            print('Play video')
+                            
                     # Draw index finger tip coordinates
                     self.mp_drawing.draw_landmarks(
                         image, hand_landmarks, self.mp_hands.HAND_CONNECTIONS)
+
                 # Convert to jpeg
                 ret, jpeg = cv2.imencode('.jpg', image)
                 return jpeg.tobytes()
+                
             #sí la mano es la derecha no dibujara landmarks pero si devolvera image
             else:
                 print('Debes utilizar la mano derecha')
@@ -116,3 +116,63 @@ class VideoStream(object):
             ret, jpeg = cv2.imencode('.jpg', image)
 
             return jpeg.tobytes()
+#
+#@Name
+#   ok_pose()
+#@Description
+# If hand pose is in hand pose 'oh rigth'
+#
+#   handmarks:np.array , image:np.array -->
+#                                        ok_pose()
+#                                                 --> boolean
+#@Author
+#   Matthew Conde Oltra
+#@Date
+#   26/01/2021
+    def ok_pose(self, h):
+
+        v = False
+        #Finger Thumb
+        
+        #Take point 4
+        point_4_x = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].x
+        point_4_y = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].y
+        #Take point 3
+        point_3_x = h.landmark[self.mp_hands.HandLandmark.THUMB_IP].x
+        point_3_y = h.landmark[self.mp_hands.HandLandmark.THUMB_IP].y
+        #Take point 2
+        point_2_x = h.landmark[self.mp_hands.HandLandmark.THUMB_MCP].x
+        point_2_y = h.landmark[self.mp_hands.HandLandmark.THUMB_MCP].x
+        #Take point 1
+        point_1_x = h.landmark[self.mp_hands.HandLandmark.THUMB_CMC].x
+        point_1_y = h.landmark[self.mp_hands.HandLandmark.THUMB_CMC].y
+
+        #Index finger mcp
+        #Take point 5
+        point_5_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].x
+        point_5_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].y
+
+        #Middle finger mcp
+        point_9_x = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].x
+        point_9_y = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
+
+        #Ring finger mcp
+        point_13_x = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].x
+        point_13_y = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].y
+
+        #Pinky finger mcp
+        point_17_x = h.landmark[self.mp_hands.HandLandmark.PINKY_MCP].x
+        point_17_y = h.landmark[self.mp_hands.HandLandmark.PINKY_MCP].y
+
+        #
+        if point_2_x <= point_5_x and point_2_x >= point_1_x:
+            if point_3_x <= point_5_x and point_3_x >= point_1_x:
+                if point_4_x <= point_5_x and point_4_x >= point_1_x:
+                    #
+                    if point_17_y > point_13_y:
+                        if point_13_y > point_9_y:
+                            if point_9_y > point_5_y:
+                                #print('Pose play is ok')
+                                v = True
+
+        return v
