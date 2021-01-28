@@ -13,7 +13,7 @@ camera = VideoStream()
 @app.route('/')
 def index():
 	"""Video streaming home page."""
-	return render_template('test.html')
+	return render_template('index.html')
 
 @app.route('/video_feed')
 def video_feed():

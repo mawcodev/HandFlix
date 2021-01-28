@@ -27,7 +27,6 @@
     </li>
     <li><a href="#usage"> 🚋 Usage</a></li>
     <li><a href="#contributing"> 👀 Contributing</a></li>
-    <li><a href="#license">💼 License</a></li>
     <li><a href="#contact">✉️ Contact</a></li>
     <li><a href="#acknowledgements">🙏 Acknowledgements</a></li>
   </ol>
@@ -39,20 +38,23 @@
 ##  👍 About The Project
 
 Hi there! This is a Gesture controller video player. You can start, stop, pause and so on only with your hands.
-This is a final project for Artificial Vision subject in Collegue. 
-We are based on hands' gestures recognition from this project.
-We proccess the gestures with openCv to determinate the order the user want to execute and BOOM! 
+This is a final project for Artificial Vision course at Collegue. 
 
 ![magic meme](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmedia.giphy.com%2Fmedia%2FVHngktboAlxHW%2Fgiphy-downsized-large.gif&f=1&nofb=1)
 
 <!-- GETTING STARTED -->
 ## 👟 Getting Started
 
-To get a local copy up and running just clone this repo and open index.html with your favorite browser. 
-We really hope your favorite browser wouldn't be IExplorer.
-If it's the case, We send our best whises, you may need them.
-
-You need a webcam with permission for capturate your gestures.
+```
+python -m virtualenv env
+env\Scripts\activate.bat
+pip3 install Flask
+pip3 install media-pipe
+pip3 freeze
+set FLASK_ENV=development
+set FLASK_DEBUG=1
+python -m flask run
+```
 
 <!-- USAGE EXAMPLES -->
 ## 🚋 Usage
@@ -62,11 +64,8 @@ Gestures avaliables:
 
 - start
 - stop
-- level up
-- level down
-- next
-- previous
-
+- pause
+- debug
 
 <!-- CONTRIBUTING -->
 ## 👀 Contributing
@@ -78,14 +77,6 @@ Contributions are what make the open source community such an amazing place to b
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-
-<!-- LICENSE -->
-## 💼 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
 
 <!-- CONTACT -->
 ## ✉️ Contact
@@ -117,8 +108,7 @@ Matthew Conde
 
 <!-- ACKNOWLEDGEMENTS -->
 ## 🙏 Acknowledgements
-* [Best README template](https://github.com/othneildrew/Best-README-Template/blob/master/README.md)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
+* [MediaPipe](https://mediapipe.dev/)
+* [Flask Documentation](https://flask.palletsprojects.com/en/1.1.x/)
 
 
