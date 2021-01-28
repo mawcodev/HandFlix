@@ -1,9 +1,9 @@
 const webcam = document.querySelector("aside.debug");
-const media = document.querySelector("body>main>video");
+const media = document.getElementsByTagName("video")[0];
 const output = document.querySelector("p.output");
-let currentGesture = "nothing";
+let currentGesture = "";
 let change = false;
-
+/* 
 (function () {
   getGesture = () => {
     fetch("./gesture")
@@ -13,12 +13,11 @@ let change = false;
         change = currentGesture !== data.gesture ? true : false;
         currentGesture = data.gesture;
       });
-
     output.innerHTML = `Gesture detected: ${currentGesture}`;
     if (change) videoController(currentGesture);
   };
-  window.setInterval(getGesture, 5000);
-})();
+  window.setInterval(getGesture, 500);
+})(); */
 
 function videoController(current) {
   switch (current) {
@@ -31,7 +30,5 @@ function videoController(current) {
       break;
     case "PLAY":
       media.play();
-    default:
-      output.innerHTML = `Gesture detected: NONE`;
   }
 }

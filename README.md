@@ -49,7 +49,7 @@ This is a final project for Artificial Vision course at Collegue.
 python -m virtualenv env
 env\Scripts\activate.bat
 pip3 install Flask
-pip3 install media-pipe
+pip3 install mediapipe
 pip3 freeze
 set FLASK_ENV=development
 set FLASK_DEBUG=1

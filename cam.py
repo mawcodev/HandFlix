@@ -18,7 +18,7 @@ class VideoStream(object):
         self.pause_counter = 0
         self.stop_counter = 0
         self.debug_counter = 0
-        self.response = "nothing"
+        self.response = "."
         #Video capture 
         self.video = cv2.VideoCapture(0)
         #Drawing utils for hands
