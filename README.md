@@ -2,16 +2,9 @@
 <p align="center">
   <a href="https://github.com/mawcoo/handflix">
     <img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/handflix.png" alt="handflix logo" width="300" height="120">
-  </a>
-  <h3 align="center">Handflix</h3><p align="center">
-    Gesture controller video player
-    <a href="https://github.com/dianait/demo">View Demo</a>
-    ·
-    <a href="https://github.com/dianait/bugs">Report Bug</a>
-    ·
-    <a href="https://github.com/dianait/request">Request Feature</a>
-  </p>
-</p>
+  </a><p align="center">
+    Gesture controller video player 
+
 
 
 
