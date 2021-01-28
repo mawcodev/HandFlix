@@ -3,7 +3,7 @@ const media = document.getElementsByTagName("video")[0];
 const output = document.querySelector("p.output");
 let currentGesture = "";
 let change = false;
-/* 
+
 (function () {
   getGesture = () => {
     fetch("./gesture")
@@ -17,7 +17,7 @@ let change = false;
     if (change) videoController(currentGesture);
   };
   window.setInterval(getGesture, 500);
-})(); */
+})();
 
 function videoController(current) {
   switch (current) {
