@@ -23,6 +23,7 @@ def video_feed():
 			yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 	return Response(generate(camera), mimetype='multipart/x-mixed-replace;boundary=frame')
 
+# Return as a json de current gesture detected
 @app.route('/gesture')
 def gesture():
 	return jsonify({"gesture": camera.getGesture()})
