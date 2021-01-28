@@ -104,8 +104,6 @@ Matthew Conde
 <a href="https://www.linkedin.com/in/matthew-c-o-b19316142/"><img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/linkedin.svg" alt="matthewconde" width="25"/></a>
 </p>
 
-
-
 <!-- ACKNOWLEDGEMENTS -->
 ## 🙏 Acknowledgements
 * [MediaPipe](https://mediapipe.dev/)
