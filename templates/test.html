@@ -1,12 +1,42 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="../static/images/hello.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../static/css/styles.css"
+      media="screen"
+    />
+    <title>Handflix</title>
+  </head>
+  <body>
+    <header>
+      <img src="../static/images/gti.jpg" alt="gti logo" />
+      <img src="../static/images/handflix.png" alt="handflix logo" />
+    </header>
+    <main>
+      <video>
+        <source
+          src="https://mybucketia.s3-us-west-2.amazonaws.com/losismpons.mp4"
+          type="video/mp4"
+        />
+      </video>
 
-<head>
-    <title>Video Streaming</title>
-</head>
+      <section class="decoration">
+        <div></div>
+        <div></div>
+        <div></div>
+      </section>
+    </main>
+    <aside class="debug">
+      <img src="{{ url_for('video_feed') }}" />
+      <p class="output">Gesture detected: STOP</p>
+    </aside>
 
-<body>
-    <h1>Video Streaming</h1>
-    <h3><img src="{{ url_for('video_feed') }}" width="50%"></h3>
-</body>
-
+    <footer></footer>
+    <script src="../static/js/handflix.js"></script>
+  </body>
 </html>

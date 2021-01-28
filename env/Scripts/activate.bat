@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\Users\Matthew\Desktop\Visión artificial\HandPlayer\Flask\HandPose\env"
+set "VIRTUAL_ENV=C:\Users\DianaIT\Desktop\HandFlix\env"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

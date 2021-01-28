@@ -10,8 +10,6 @@ import cv2
 import mediapipe as mp
 import numpy as np
 
-
-
 class VideoStream(object):
     
     #Initialize important variables
@@ -20,6 +18,7 @@ class VideoStream(object):
         self.pause_counter = 0
         self.stop_counter = 0
         self.debug_counter = 0
+        self.response = "nothing"
         #Video capture 
         self.video = cv2.VideoCapture(0)
         #Drawing utils for hands
@@ -32,7 +31,10 @@ class VideoStream(object):
         
     def __del__(self):
 
-        self.video.release()        
+        self.video.release()   
+        
+    def getGesture(self):
+        return self.response
 
     def hand_pose(self):
         # Read each frame 
@@ -79,15 +81,19 @@ class VideoStream(object):
 
 
                         if(self.stop_counter > 10):
+                            self.response = 'STOP'
                             print("STOP")
                             self.stop_counter = 0
                         if(self.debug_counter > 20):
+                            self.response = 'DEBUG'
                             print("DEBUG")
                             self.debug_counter = 0
                         if(self.play_counter > 20):
+                            self.response = 'PLAY'
                             print("PLAY")
                             self.play_counter = 0
                         if(self.pause_counter > 20):
+                            self.response = 'PAUSE'
                             print("PAUSE")
                             self.pause_counter = 0
 

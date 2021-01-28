@@ -8,7 +8,7 @@ if [ "${BASH_SOURCE-}" = "$0" ]; then
 fi
 
 deactivate () {
-    unset -f pydoc >/dev/null 2>&1
+    unset -f pydoc >/dev/null 2>&1 || true
 
     # reset old environment variables
     # ! [ -z ${VAR+_} ] returns true if VAR is declared at all
@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='C:\Users\Matthew\Desktop\Visión artificial\HandPlayer\Flask\HandPose\env'
+VIRTUAL_ENV='C:\Users\DianaIT\Desktop\HandFlix\env'
 if ([ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ]) && $(command -v cygpath &> /dev/null) ; then
     VIRTUAL_ENV=$(cygpath -u "$VIRTUAL_ENV")
 fi
@@ -85,7 +85,3 @@ pydoc () {
 if [ -n "${BASH-}" ] || [ -n "${ZSH_VERSION-}" ] ; then
     hash -r 2>/dev/null
 fi
-
-set FLASK_APP=app.py
-set FLASK_ENV=development
-set FLASK_DEBUG=1
