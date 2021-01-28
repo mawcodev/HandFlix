@@ -2,16 +2,9 @@
 <p align="center">
   <a href="https://github.com/mawcoo/handflix">
     <img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/handflix.png" alt="handflix logo" width="300" height="120">
-  </a>
-  <h3 align="center">Handflix</h3><p align="center">
-    Gesture controller video player
-    <a href="https://github.com/dianait/demo">View Demo</a>
-    ·
-    <a href="https://github.com/dianait/bugs">Report Bug</a>
-    ·
-    <a href="https://github.com/dianait/request">Request Feature</a>
-  </p>
-</p>
+  </a><p align="center">
+    Gesture controller video player</p>
+
 
 
 
@@ -39,9 +32,6 @@
 
 Hi there! This is a Gesture controller video player. You can start, stop, pause and so on only with your hands.
 This is a final project for Artificial Vision course at Collegue. 
-
-![magic meme](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmedia.giphy.com%2Fmedia%2FVHngktboAlxHW%2Fgiphy-downsized-large.gif&f=1&nofb=1)
-
 <!-- GETTING STARTED -->
 ## 👟 Getting Started
 
