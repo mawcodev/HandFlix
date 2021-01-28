@@ -10,6 +10,50 @@ import cv2
 import mediapipe as mp
 import numpy as np
 
+"""
+Código con el que coger cada uno de los puntos de la mano:
+
+        #Finger Thumb
+        #Take point 4
+        point_4_x = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].x
+        point_4_y = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].y
+        #Take point 3
+        point_3_x = h.landmark[self.mp_hands.HandLandmark.THUMB_IP].x
+        point_3_y = h.landmark[self.mp_hands.HandLandmark.THUMB_IP].y
+        #Take point 2
+        point_2_x = h.landmark[self.mp_hands.HandLandmark.THUMB_MCP].x
+        point_2_y = h.landmark[self.mp_hands.HandLandmark.THUMB_MCP].x
+        #Take point 1
+        point_1_x = h.landmark[self.mp_hands.HandLandmark.THUMB_CMC].x
+        point_1_y = h.landmark[self.mp_hands.HandLandmark.THUMB_CMC].y
+
+        #Index finger mcp
+        #Take point 5
+        point_5_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].x
+        point_5_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].y
+        #Take point 6
+        point_6_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_PIP].x
+        point_6_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_PIP].y
+        #Take point 7
+        point_7_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_DIP].x
+        point_7_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_DIP].y
+        #Take point 8
+        point_8_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].x
+        point_8_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].y
+        
+
+        #Middle finger mcp
+        point_9_x = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].x
+        point_9_y = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
+
+        #Ring finger mcp
+        point_13_x = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].x
+        point_13_y = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].y
+
+        #Pinky finger mcp
+        point_17_x = h.landmark[self.mp_hands.HandLandmark.PINKY_MCP].x
+        point_17_y = h.landmark[self.mp_hands.HandLandmark.PINKY_MCP].y"""
+
 class VideoStream(object):
     
     #Initialize important variables
@@ -74,8 +118,8 @@ class VideoStream(object):
                     for hand_landmarks in results.multi_hand_landmarks:
                         
                         #Call funtions to detect pose
-                        self.stop_pose_detection(hand_landmarks.landmark)
-                        self.debug_pose_detection(hand_landmarks.landmark)
+                        self.stop_pose_detection(hand_landmarks)
+                        self.debug_pose_detection(hand_landmarks)
                         self.ok_pose(hand_landmarks)
                         self.pause_pose(hand_landmarks)
 
@@ -122,7 +166,7 @@ class VideoStream(object):
     #@Description
     # If a hand pose is in STOP pose
     #
-    # landmarks: np.array
+    #  handmarks:np.array
     #                 -->
     #                       stop_pose_detection()
     #                                       -->
@@ -131,12 +175,48 @@ class VideoStream(object):
     # Oscar Blanquez
     # @Date
     # 26/01/2021
-    def stop_pose_detection(self, landmark):
-        index = landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].y
-        middle = landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
-        ring = landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].y
-        pinky = landmark[self.mp_hands.HandLandmark.PINKY_MCP].y
-        if(abs(index - middle) < 0.02 and abs(index - ring) < 0.02 and abs(index - pinky) < 0.02):
+    def stop_pose_detection(self, h):
+        
+        #Wrist
+        point_0_x = h.landmark[self.mp_hands.HandLandmark.WRIST].x
+        point_0_y = h.landmark[self.mp_hands.HandLandmark.WRIST].y
+        #Finger Thumb
+        #Take point 4
+        point_4_x = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].x
+        point_4_y = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].y
+        ##Index finger
+        #Take point 5
+        point_5_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].x
+        point_5_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].y
+        #Take point 8
+        point_8_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].x
+        point_8_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].y
+
+        #Middle finger
+        #Take point 9
+        point_9_x = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].x
+        point_9_y = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
+        #Take point 12
+        point_12_x = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_TIP].x
+        point_12_y = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_TIP].y
+
+        #Ring finger
+        #Take point 13
+        point_13_x = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].x
+        point_13_y = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].y
+        #Take point 16
+        point_16_x = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_TIP].x
+        point_16_y = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_TIP].y
+
+        #Pinky finger
+        #Take point 17
+        point_17_x = h.landmark[self.mp_hands.HandLandmark.PINKY_MCP].x
+        point_17_y = h.landmark[self.mp_hands.HandLandmark.PINKY_MCP].y
+        #Take point 20
+        point_20_x = h.landmark[self.mp_hands.HandLandmark.PINKY_TIP].x
+        point_20_y = h.landmark[self.mp_hands.HandLandmark.PINKY_TIP].y
+
+        if(abs(point_5_y - point_9_y) < 0.02 and abs(point_5_y - point_13_y) < 0.02 and abs(point_5_y - point_17_y) < 0.02):            
             self.stop_counter += 1
         else:
             return
@@ -146,7 +226,7 @@ class VideoStream(object):
     #@Description
     # If a hand pose is in troll pose
     #
-    # landmarks: np.array
+    #  handmarks:np.array
     #                 -->
     #                       debug_pose_detection()
     #                                       -->
@@ -155,11 +235,38 @@ class VideoStream(object):
     # Oscar Blanquez
     # @Date
     # 26/01/2021
-    def debug_pose_detection(self, landmark):
-        thumb = landmark[self.mp_hands.HandLandmark.THUMB_TIP].y
-        index = landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].y
-        if(abs(thumb - index) < 0.05):
-            self.debug_counter += 1
+    def debug_pose_detection(self, h):
+
+        #Finger Thumb
+        #Take point 4
+        point_4_x = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].x
+        point_4_y = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].y
+
+        ##Index finger
+        #Take point 8
+        point_8_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].x
+        point_8_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].y
+
+        #Middle finger
+        #Take point 12
+        point_12_x = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_TIP].x
+        point_12_y = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_TIP].y
+
+        #Ring finger
+        #Take point 16
+        point_16_x = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_TIP].x
+        point_16_y = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_TIP].y
+
+        #Pinky finger
+        #Take point 20
+        point_20_x = h.landmark[self.mp_hands.HandLandmark.PINKY_TIP].x
+        point_20_y = h.landmark[self.mp_hands.HandLandmark.PINKY_TIP].y
+        
+        if (abs(point_4_y - point_8_y) < 0.05) :     
+            if point_12_y < point_8_y and point_12_y < point_4_y:
+                if point_16_y < point_8_y and point_16_y < point_4_y:
+                    if point_20_y < point_8_y and point_20_y < point_4_y:
+                        self.debug_counter += 1
         else:
             return
 
@@ -179,7 +286,6 @@ class VideoStream(object):
     def ok_pose(self, h):
 
         #Finger Thumb
-        
         #Take point 4
         point_4_x = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].x
         point_4_y = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].y
@@ -193,7 +299,7 @@ class VideoStream(object):
         point_1_x = h.landmark[self.mp_hands.HandLandmark.THUMB_CMC].x
         point_1_y = h.landmark[self.mp_hands.HandLandmark.THUMB_CMC].y
 
-        ##Index finger mcp
+        ##Index finger
         #Take point 5
         point_5_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].x
         point_5_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].y
@@ -207,50 +313,23 @@ class VideoStream(object):
         point_8_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].x
         point_8_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].y
 
-        #Middle finger mcp
+        #Middle finger
         point_9_x = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].x
         point_9_y = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
-        #Take point 10
-        point_10_x = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_PIP].x
-        point_10_y = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_PIP].y
-        #Take point 11
-        point_11_x = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_DIP].x
-        point_11_y = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_DIP].y
-        #Take point 12
-        point_12_x = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_TIP].x
-        point_12_y = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_TIP].y
 
-        #Ring finger mcp
+        #Ring finger
         point_13_x = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].x
         point_13_y = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].y
-        #Take point 14
-        point_14_x = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_PIP].x
-        point_14_y = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_PIP].y
-        #Take point 15
-        point_15_x = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_DIP].x
-        point_15_y = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_DIP].y
-        #Take point 16
-        point_16_x = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_TIP].x
-        point_16_y = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_TIP].y
 
-        #Pinky finger mcp
+        #Pinky finger
         point_17_x = h.landmark[self.mp_hands.HandLandmark.PINKY_MCP].x
         point_17_y = h.landmark[self.mp_hands.HandLandmark.PINKY_MCP].y
-        #Take point 18
-        point_18_x = h.landmark[self.mp_hands.HandLandmark.PINKY_PIP].x
-        point_18_y = h.landmark[self.mp_hands.HandLandmark.PINKY_PIP].y
-        #Take point 19
-        point_19_x = h.landmark[self.mp_hands.HandLandmark.PINKY_DIP].x
-        point_19_y = h.landmark[self.mp_hands.HandLandmark.PINKY_DIP].y
-        #Take point 20
-        point_20_x = h.landmark[self.mp_hands.HandLandmark.PINKY_TIP].x
-        point_20_y = h.landmark[self.mp_hands.HandLandmark.PINKY_TIP].y
+        
 
         #
         if point_2_x <= point_5_x and point_2_x >= point_1_x:
             if point_3_x <= point_5_x and point_3_x >= point_1_x:
                 if point_4_x <= point_5_x and point_4_x >= point_1_x:
-                    #
                     if point_17_y > point_13_y:
                         if point_13_y > point_9_y:
                             if point_9_y > point_5_y:
@@ -274,53 +353,37 @@ class VideoStream(object):
 #   26/01/2021
     def pause_pose(self, h):
 
-        v = False
         #Finger Thumb
-        
         #Take point 4
         point_4_x = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].x
         point_4_y = h.landmark[self.mp_hands.HandLandmark.THUMB_TIP].y
         #Take point 3
         point_3_x = h.landmark[self.mp_hands.HandLandmark.THUMB_IP].x
         point_3_y = h.landmark[self.mp_hands.HandLandmark.THUMB_IP].y
-        #Take point 2
-        point_2_x = h.landmark[self.mp_hands.HandLandmark.THUMB_MCP].x
-        point_2_y = h.landmark[self.mp_hands.HandLandmark.THUMB_MCP].x
-        #Take point 1
-        point_1_x = h.landmark[self.mp_hands.HandLandmark.THUMB_CMC].x
-        point_1_y = h.landmark[self.mp_hands.HandLandmark.THUMB_CMC].y
 
-        #Index finger mcp
+        #Index finger
         #Take point 5
         point_5_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].x
         point_5_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].y
         #Take point 6
         point_6_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_PIP].x
         point_6_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_PIP].y
-        #Take point 7
-        point_7_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_DIP].x
-        point_7_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_DIP].y
-        #Take point 8
-        point_8_x = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].x
-        point_8_y = h.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].y
         
 
-        #Middle finger mcp
+        #Middle finger
         point_9_x = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].x
         point_9_y = h.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP].y
 
-        #Ring finger mcp
+        #Ring finger
         point_13_x = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].x
         point_13_y = h.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP].y
 
-        #Pinky finger mcp
+        #Pinky finger
         point_17_x = h.landmark[self.mp_hands.HandLandmark.PINKY_MCP].x
         point_17_y = h.landmark[self.mp_hands.HandLandmark.PINKY_MCP].y
 
         if point_17_y > point_13_y:
             if point_13_y > point_9_y:
                 if point_9_y > point_5_y:
-                    #print(point_5_x)
-                    #print(point_3_x)
                     if point_4_x <= point_6_x and point_3_x >= point_5_x or point_4_x >= point_6_x and point_3_x >= point_5_x:
                         self.pause_counter += 1
