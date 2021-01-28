@@ -33,8 +33,6 @@
 Hi there! This is a Gesture controller video player. You can start, stop, pause and so on only with your hands.
 This is a final project for Artificial Vision course at Collegue. 
 
-![magic meme](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmedia.giphy.com%2Fmedia%2FVHngktboAlxHW%2Fgiphy-downsized-large.gif&f=1&nofb=1)
-
 <!-- GETTING STARTED -->
 ## 👟 Getting Started
 
