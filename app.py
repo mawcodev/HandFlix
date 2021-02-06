@@ -28,5 +28,11 @@ def video_feed():
 def gesture():
 	return jsonify({"gesture": camera.getGesture()})
 
+
+@app.errorhandler(500)
+def internal_error(error):
+
+    return "500 error"
+
 if __name__ == '__main__':
-	app.run()
+	app.run(host='0.0.0.0', port=5000)
