@@ -6,7 +6,7 @@ let change = false;
 
 (function () {
   getGesture = () => {
-    fetch("./gesture")
+    fetch("https://hand-flix.herokuapp.com/gesture")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
