@@ -31,8 +31,7 @@
 ##  👍 About The Project
 
 
-Hi there! This is a Gesture controller video player. You can start, stop, pause and so on only with your hands.
-This is a final project for Artificial Vision course at Collegue. 
+Handflix is a hand-controlled video player web application. Our web application is based on the hand position tracker provided by MediaPipe in order to control start, pause and stop video actions. 🎓 It's a college's project for Digital Image Processing. Computer Vision's course.
 
 ![handflix screenshot](https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/screenshot.png)
 <!-- GETTING STARTED -->
