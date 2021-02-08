@@ -55,6 +55,7 @@ python -m flask run
 ```
 
 The app is running now on http://localhost:5000 
+
 🌟 Remember to give permission to the browser for webcam live stream and for media content playback.
 
 <!-- USAGE EXAMPLES -->
