@@ -3,7 +3,7 @@
   <a href="https://github.com/mawcoo/handflix">
     <img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/handflix.png" alt="handflix logo" width="300" height="120">
   </a><p align="center">
-    Gesture controller video player</p>
+    Hand-controlled video player</p>
 
 
 
@@ -30,12 +30,21 @@
 <!-- ABOUT THE PROJECT -->
 ##  👍 About The Project
 
+
 Hi there! This is a Gesture controller video player. You can start, stop, pause and so on only with your hands.
 This is a final project for Artificial Vision course at Collegue. 
+
+![handflix screenshot](https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/screenshot.png)
 <!-- GETTING STARTED -->
+
 ## 👟 Getting Started
 
+![](https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/stack.png)
+
+With Python 3.7.9 installed...
+
 ```
+pip3 install virtualenv
 python -m virtualenv env
 env\Scripts\activate.bat
 pip3 install Flask
@@ -49,13 +58,9 @@ python -m flask run
 <!-- USAGE EXAMPLES -->
 ## 🚋 Usage
 
-Select the video you wanna play and get you thumbs up to start.
 Gestures avaliables:
 
-- start
-- stop
-- pause
-- debug
+![poses](https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/poses.png)
 
 <!-- CONTRIBUTING -->
 ## 👀 Contributing
