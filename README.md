@@ -84,14 +84,14 @@ Contributions are what make the open source community such an amazing place to b
    <p>
   <a href="https://github.com/dianait" ><img src="https://avatars1.githubusercontent.com/u/18724171?s=460&u=0fc3251448d0621a1b7c2c38268db7f881bbd767&v=4" alt="dianait_" width="25"/></a>
   <a href="https://twitter.com/dianait_"><img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/twitter.svg" alt="dianait_" width="25"/></a>
-<a href="https://www.linkedin.com/in/oscarblanquez/"><img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/linkedin.svg" alt="dianahernandez" width="25"/></a>
+<a href="https://www.linkedin.com/in/dianahernandezsoler/"><img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/linkedin.svg" alt="dianahernandez" width="25"/></a>
 </p>
 
 Óscar Blánquez 
    <p>
   <a ref="https://github.com/oscarblanq"><img src="https://avatars3.githubusercontent.com/u/36045526?s=460&u=437ba6c0fc93dc180f33c2cd3bda56d2b845501c&v=4" alt="osacarblanq" width="25"/></a>
   <a href="https://twitter.com/oscarblanq"><img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/twitter.svg" alt="oscarblanq" width="25"/></a>
-<a href="https://www.linkedin.com/in/oscarblanquez/"><img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/linkedin.svg" alt="oscarblanquez" width="25"/></a>
+<a href="https://www.linkedin.com/in/oscarblanq/"><img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/linkedin.svg" alt="oscarblanquez" width="25"/></a>
 
 </p>
 
