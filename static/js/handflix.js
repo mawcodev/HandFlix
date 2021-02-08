@@ -1,3 +1,8 @@
+/*File: handflix.js
+Description: This file contain the functions to control the videoplayer
+Author: Diana Hernandez Soler
+*/
+
 const webcam = document.querySelector("aside.debug");
 const media = document.getElementsByTagName("video")[0];
 const output = document.querySelector("p.output");

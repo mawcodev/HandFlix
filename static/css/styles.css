@@ -1,3 +1,9 @@
+
+/*File: styles.css
+Description: This file use to add style in website
+Author: Diana Hernandez Soler
+*/
+
 header {
   display: flex;
   justify-content: space-around;

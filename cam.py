@@ -11,7 +11,7 @@ import mediapipe as mp
 import numpy as np
 
 """
-Código con el que coger cada uno de los puntos de la mano:
+This code is used to take fingers dot
 
         #Finger Thumb
         #Take point 4
@@ -99,7 +99,7 @@ class VideoStream(object):
 
         #If don't found a hand, return image only
         if results.multi_handedness == None:
-            #solo devuelve la imagen de streaming
+            #return streaming image only
             #print('Type value is None')
             # Convert to jpeg
             ret, jpeg = cv2.imencode('.jpg', image)
@@ -346,7 +346,7 @@ class VideoStream(object):
 #
 #   handmarks:np.array -->
 #                         pause_pose()
-#                                  --> boolean
+#                                  --> void
 #@Author
 #   Matthew Conde Oltra
 #@Date
