@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 ./env
 ././venv
+=======
+>>>>>>> 3bd8b791cbef3370efc0259e291da2124228e1ab
 __pycache__/
 *.py[cod]
 ./vscode
