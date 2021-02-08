@@ -89,7 +89,7 @@ Contributions are what make the open source community such an amazing place to b
 
 Óscar Blánquez 
    <p>
-  <a ref="https://github.com/oscarblanq"><img src="https://avatars3.githubusercontent.com/u/36045526?s=460&u=437ba6c0fc93dc180f33c2cd3bda56d2b845501c&v=4" alt="osacarblanq" width="25"/></a>
+  <a href="https://github.com/oscarblanq"><img src="https://avatars3.githubusercontent.com/u/36045526?s=460&u=437ba6c0fc93dc180f33c2cd3bda56d2b845501c&v=4" alt="osacarblanq" width="25"/></a>
   <a href="https://twitter.com/oscarblanq"><img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/twitter.svg" alt="oscarblanq" width="25"/></a>
 <a href="https://www.linkedin.com/in/oscarblanq/"><img src="https://github.com/mawcoo/HandFlix/blob/main/static/images/readme/linkedin.svg" alt="oscarblanquez" width="25"/></a>
 
